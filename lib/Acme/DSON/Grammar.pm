@@ -9,11 +9,12 @@ rule array     { 'so' ~ 'many' <arraylist> }
 rule arraylist { <value> * % [next | and | also ] }
 
 token value:sym<number> {
-    :i
-    '-'?
-    [ 0 | <[1..9]> <[0..9]>* ]
-    [ \. <[0..9]>+ ]?
-    [ very [\+|\-]? <[0..9]>+ ]?
+    <(
+        '-'?
+        [ 0 | <[1..7]> <[0..7]>* ]
+        [ \. <[0..7]>+ ]?
+    )>
+    <very>?
 }
 
 token value:sym<true>  { yes }
@@ -26,4 +27,8 @@ token str_escape {
 
 token odigit {
     <[0..7]>**8
+}
+
+token very {
+    [very | VERY] <( [\+|\-]? <[0..7]>+ )>
 }

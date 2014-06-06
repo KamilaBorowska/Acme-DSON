@@ -2,7 +2,13 @@ use v6;
 use JSON::Tiny::Actions;
 class Acme::DSON::Actions is JSON::Tiny::Actions;
 
-method value:sym<number>($/) { make +$/.Str.subst('very', 'e').subst('VERY', 'E') }
+method value:sym<number>($/) {
+    my $result = :8(~$/);
+    if $<very> {
+        $result *= 10 ** $<very>;
+    }
+    make $result;
+}
 
 my %h = '\\' => "\\",
         '/' => "/",
