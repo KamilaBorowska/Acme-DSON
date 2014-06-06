@@ -2,19 +2,24 @@ use v6;
 
 module Acme::DSON;
 
-use JSON::Tiny;
 use Acme::DSON::Actions;
 use Acme::DSON::Grammar;
 
 proto to-dson($) is export {*}
 
 multi to-dson(Real:D $d is copy) {
-    return $d.subst('e', 'very');
+    return $d.base(8).subst(/\.$/, "");
 }
 multi to-dson(Bool:D $d) {
-    return $d ?? 'notfalse' !! 'nottrue';
+    return $d ?? 'yes' !! 'no';
 }
-multi to-dson(Str:D $d) { to-json $d }
+multi to-dson(Str:D $d) {
+    '"'
+    ~ $d.trans(['"', '\\', "\b", "\f", "\n", "\r", "\t"]
+            => ['\"', '\\\\', '\b', '\f', '\n', '\r', '\t'])\
+            .subst(/<-[\c32..\c126]>/, { ord(~$_).fmt('\u%08o') }, :g)
+    ~ '"'
+}
 multi to-dson(Positional:D $d) {
     return 'so '
             ~ $d.map(&to-dson).join(' next ')
@@ -25,7 +30,7 @@ multi to-dson(Associative:D $d) {
             ~ $d.map({ to-dson(.key) ~ ' is ' ~ to-dson(.value) }).join(' next ')
             ~ ' wow';
 }
-multi to-dson(Mu:U $) { 'nullish' }
+multi to-dson(Mu:U $) { 'empty' }
 multi to-dson(Mu:D $s) {
     die "Can't serialize an object of type " ~ $s.WHAT.perl
 }
