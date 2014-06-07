@@ -17,7 +17,7 @@ multi to-dson(Str:D $d) {
     '"'
     ~ $d.trans(['"', '\\', "\b", "\f", "\n", "\r", "\t"]
             => ['\"', '\\\\', '\b', '\f', '\n', '\r', '\t'])\
-            .subst(/<-[\c32..\c126]>/, { ord(~$_).fmt('\u%08o') }, :g)
+            .subst(/<-[\c32..\c126]>/, { ord(~$_).fmt('\u%06o') }, :g)
     ~ '"'
 }
 multi to-dson(Positional:D $d) {

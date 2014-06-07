@@ -26,7 +26,7 @@ token str_escape {
 }
 
 token odigit {
-    <[0..7]>**8
+    <[0..7]>**6
 }
 
 token very {
