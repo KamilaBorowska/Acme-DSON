@@ -30,5 +30,5 @@ token odigit {
 }
 
 token very {
-    [very | VERY] <( [\+|\-]? <digit>+ )>
+    [very | VERY] <( [\+|\-]? <[0..7]>+ )>
 }

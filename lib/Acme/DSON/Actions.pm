@@ -5,7 +5,7 @@ class Acme::DSON::Actions is JSON::Tiny::Actions;
 method value:sym<number>($/) {
     my $result = :8(~$/);
     if $<very> {
-        $result *= 10 ** $<very>;
+        $result *= 8 ** $<very>;
     }
     make $result;
 }
