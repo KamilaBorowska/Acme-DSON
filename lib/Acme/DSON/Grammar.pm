@@ -32,3 +32,7 @@ token odigit {
 token very {
     [very | VERY] <( [\+|\-]? <[0..7]>+ )>
 }
+
+token ws {
+    \s*
+}
