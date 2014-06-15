@@ -27,7 +27,7 @@ multi to-dson(Positional:D $d) {
 }
 multi to-dson(Associative:D $d) {
     return 'such '
-            ~ $d.map({ to-dson(.key) ~ ' is ' ~ to-dson(.value) }).join(' next ')
+            ~ $d.map({ to-dson(.key) ~ ' is ' ~ to-dson(.value) }).join(', ')
             ~ ' wow';
 }
 multi to-dson(Mu:U $) { 'empty' }
