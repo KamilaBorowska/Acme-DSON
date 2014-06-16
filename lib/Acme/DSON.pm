@@ -22,7 +22,7 @@ multi to-dson(Str:D $d) {
 }
 multi to-dson(Positional:D $d) {
     return 'so '
-            ~ $d.map(&to-dson).join(' next ')
+            ~ $d.map(&to-dson).join(' also ')
             ~ ' many';
 }
 multi to-dson(Associative:D $d) {
