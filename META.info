@@ -1,6 +1,6 @@
 {
     "name" : "Acme::DSON",
-    "version" : "0.2.0",
+    "version" : "0.2.1",
     "author" : "Konrad Borowski <x.fix@o2.pl>",
     "description" : "such \"foo\" is \"bar\" wow",
     "depends" : [ "JSON::Tiny" ],
