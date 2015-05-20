@@ -1,6 +1,6 @@
 use v6;
 use JSON::Tiny::Grammar;
-grammar Acme::DSON::Grammar is JSON::Tiny::Grammar;
+unit grammar Acme::DSON::Grammar is JSON::Tiny::Grammar;
 
 rule object    { 'such' ~ 'wow' <pairlist> }
 rule pairlist  { <pair> * % <[,.!?]> }
