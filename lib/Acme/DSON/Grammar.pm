@@ -6,7 +6,7 @@ rule object    { 'such' ~ 'wow' <pairlist> }
 rule pairlist  { <pair> * % <[,.!?]> }
 rule pair      { <string> is <value> }
 rule array     { 'so' ~ 'many' <arraylist> }
-rule arraylist { <value> * % [and | also ] }
+rule arraylist { <value> * % [ and | also ] }
 
 token value:sym<number> {
     <(
